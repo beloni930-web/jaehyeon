@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>소개 페이지</title>
+</head>
+<body>
+  <div id="header"></div>
+  <main>
+    <h1>소개 페이지</h1>
+    <p>여기는 about.html 내용입니다.</p>
+  </main>
+  <div id="footer"></div>
+  <script>
+    fetch('common/header.html').then(res=>res.text()).then(html=>{
+      document.getElementById('header').innerHTML = html;
+      const loginBtn=document.getElementById('loginBtn');
+      const signupBtn=document.getElementById('signupBtn');
+      const loginModal=document.getElementById('loginModal');
+      const signupModal=document.getElementById('signupModal');
+      const closeLogin=document.getElementById('closeLogin');
+      const closeSignup=document.getElementById('closeSignup');
+      loginBtn.onclick=()=>loginModal.style.display='flex';
+      signupBtn.onclick=()=>signupModal.style.display='flex';
+      closeLogin.onclick=()=>loginModal.style.display='none';
+      closeSignup.onclick=()=>signupModal.style.display='none';
+      window.onclick=e=>{if(e.target===loginModal)loginModal.style.display='none';if(e.target===signupModal)signupModal.style.display='none';}
+    });
+    fetch('common/footer.html').then(res=>res.text()).then(html=>document.getElementById('footer').innerHTML=html);
+  </script>
+</body>
+</html>
